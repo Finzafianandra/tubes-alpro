@@ -132,6 +132,39 @@ def memperbarui_mobil():
             file.seek(panjang_data * (index - 1))
             file.write(data)
 
+## Fungsi menghapus daftar mobil
+def Menghapus_daftar_mobil():
+    daftar_mobil()
+    no = int(input("Masukkan Nomor Data : ")) - 1
+
+    with open("garasi.txt", 'r') as file:
+        data = file.readlines()
+        content = data[no].split(",")
+        nopol =  content[0]
+        tipe = content[1]
+        warna = content[2]
+        pemilik = content[3]
+        kontak = content[4]
+        status = content[5]
+        biaya = content[6].replace("\n", "")
+
+        os.system("clear")
+        print(f"1. Nopol   : {nopol}")
+        print(f"2. Tipe    : {tipe}")
+        print(f"3. Warna   : {warna}")
+        print(f"4. Pemilik : {pemilik}")
+        print(f"5. Kontak  : {kontak}")
+        print(f"6. Status  : {status}")
+        print(f"7. Biaya   : {biaya}")
+
+        opsi = input("Yakin Ingin dihapus (y/t) : ")
+        if opsi == "y" or opsi == "Y":
+            with open("garasi.txt","w") as file:
+                    for index,content in enumerate(data):
+                        if index != no:
+                            file.write(content)
+
+
 while True:
     menu()
     opsi = input("Masukkan Opsi : ")
@@ -140,5 +173,5 @@ while True:
         case "1": daftar_mobil()
         case "2": memasukkan_data()
         case "3": memperbarui_mobil()
-        case "1": pass
-        case "1": pass
+        case "4": Menghapus_daftar_mobil()
+        case "5": exit()
