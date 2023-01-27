@@ -22,7 +22,8 @@ def menu():
     print("2. tambah daftar mobil")
     print("3. Memperbarui data mobil")
     print("4. Menghapus data mobil")
-    print("5. Keluar\n")
+    print("5. Sorting data")
+    print("6. Keluar\n")
 
 # Fungsi Menampilkan Data
 def daftar_mobil():
@@ -164,7 +165,32 @@ def Menghapus_daftar_mobil():
                         if index != no:
                             file.write(content)
 
+## Fungsi untuk sorting data
+def sorting():
+    print("="*93)
+    print("NO |     PEMILIK     |    TIPE   |  WARNA   |   NOPOL   |   KONTAK    |  STATUS  |   BIAYA  |")
+    print("="*93)
 
+    with open("garasi.txt", "r") as file:
+        data = file.readlines() 
+        data_tuple = [tuple(line.strip().split(',')) for line in data]
+        data_sort = sorted(data_tuple, key=lambda x:x[3])
+        for index,data in enumerate(data_sort):
+            
+            nopol =  data[0]
+            tipe = data[1]
+            warna = data[2]
+            pemilik = data[3]
+            kontak = data[4]
+            status = data[5]
+            biaya = data[6]
+
+            print(f"{index+1:2} | {pemilik:.15} | {tipe:.9} | {warna:.8} | {nopol:.9} | {kontak:.11} | {status:.8} | Rp{biaya:.13}")
+
+    print("="*93)
+    x = input("")
+
+## program dimulai
 while True:
     menu()
     opsi = input("Masukkan Opsi : ")
@@ -174,4 +200,5 @@ while True:
         case "2": memasukkan_data()
         case "3": memperbarui_mobil()
         case "4": Menghapus_daftar_mobil()
-        case "5": exit()
+        case "5": sorting()
+        case "6": exit()
