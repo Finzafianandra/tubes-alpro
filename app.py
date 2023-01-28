@@ -31,7 +31,7 @@ def daftar_mobil():
     print("NO |   NOPOL   |    TIPE   |  WARNA   |     PEMILIK     |   KONTAK    |  STATUS  |   BIAYA  |")
     print("="*93)
 
-    with open("garasi.txt", "r") as file:
+    with open("garasi GLOB RENT CAR.txt", "r") as file:
         data = file.readlines() 
         
         for index,data in enumerate(data):
